@@ -14,5 +14,14 @@ public class Main {
         for (Chocolate c : chocolates) {
             System.out.println(c.getId() + " | " + c.getName() + " | " + c.getPrice() + "$ | Remaining: " + c.getQuantity());
         }
+
+        SupplierDB supplier = new SupplierDB();
+        ArrayList<Supplier> suppliers = supplier.readAll();
+        System.out.println("List of suppliers:");
+        for (Supplier s : suppliers) {
+            System.out.println(s.getId() + " | " + s.getName() + " | " + s.getAddress() + " | " + s.getCity() + " | " + s.getPhone());
+        }
+
+
     }
 }
