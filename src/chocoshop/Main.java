@@ -1,27 +1,21 @@
 package chocoshop;
 
-import java.sql.*;
-import java.util.ArrayList;
-import chocoshop.DatabaseConnection;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ChocolateDB repo = new ChocolateDB();
-
-        ArrayList<Chocolate> chocolates = repo.readAll();
-
-        System.out.println("List of chocolates:");
-        for (Chocolate c : chocolates) {
-            System.out.println(c.getId() + " | " + c.getName() + " | " + c.getPrice() + "$ | Remaining: " + c.getQuantity());
+        Menu menu = new Menu();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nWelcome to Chocolate Shop system! List of actions:\n \n 1) Make a trade\n 2) Add a new type of chocolate\n 3) Show all suppliers\n 4) Add a new supplier\n 5) Exit\n\n Choose your action: ");
+        while (true) {
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            if (choice == 1) {
+                menu.Trade();
+            }
+            else if (choice == 69) {
+                menu.showAllChocolates();
+            }
         }
-
-        SupplierDB supplier = new SupplierDB();
-        ArrayList<Supplier> suppliers = supplier.readAll();
-        System.out.println("List of suppliers:");
-        for (Supplier s : suppliers) {
-            System.out.println(s.getId() + " | " + s.getName() + " | " + s.getAddress() + " | " + s.getCity() + " | " + s.getPhone());
-        }
-
-
     }
 }
