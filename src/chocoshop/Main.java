@@ -16,6 +16,12 @@ public class Main {
             else if (choice == 69) {
                 menu.showAllChocolates();
             }
+            else if (choice == 68) {
+                menu.showOneChocolate();
+            }
+            else if (choice == 100) {
+                menu.recoverQuantity();
+            }
         }
     }
 }

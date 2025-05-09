@@ -24,7 +24,7 @@ public class ChocolateDB {
 
     public ArrayList<Chocolate> readAll() {
         ArrayList<Chocolate> chocolates = new ArrayList<>();
-        String sql = "SELECT * FROM chocolate";
+        String sql = "SELECT * FROM chocolate ORDER BY id";
 
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -77,4 +77,37 @@ public class ChocolateDB {
             e.printStackTrace();
         }
     }
+
+    public void sellUpdate(int id, int quantity) {
+        String sql = "UPDATE chocolate SET quantity = quantity - ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, quantity);
+            stmt.setInt(2, id);
+
+            stmt.executeUpdate();
+            System.out.println("Yes");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    ////// TESTING PURPOSES ONLY /////
+
+    public void recoverQuantity(int id, int quantity) {
+        String sql = "UPDATE chocolate SET quantity = quantity + ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, quantity);
+            stmt.setInt(2, id);
+
+            stmt.executeUpdate();
+            System.out.println("Yes");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
