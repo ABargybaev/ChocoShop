@@ -9,6 +9,7 @@ public class Menu {
 
     ArrayList<Chocolate> chocolates = chocolateDB.readAll();
     ArrayList<Supplier> suppliers = supplierDB.readAll();
+    ArrayList<Sale> sales = salesDB.readAll();
     Scanner scan = new Scanner(System.in);
 
     public void Trade(){
@@ -75,6 +76,34 @@ public class Menu {
         int id = scan.nextInt();
         scan.nextLine();
         chocolateDB.fullInfo(id);
+    }
+    public void tradeMenu(){
+        System.out.print("\n 1)Show all sales by date\n 2)Show all sales by chocolate\n 3)Show What information would you like to read?: ");
+        int choice = scan.nextInt();
+        scan.nextLine();
+        switch(choice){
+            case 1:
+                salesByDate();
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            default:
+                System.out.println("\nNo!");
+        }
+    }
+
+    public void salesByDate(){
+        System.out.print("\nEnter the date: ");
+        String sale_date = scan.nextLine();
+        ArrayList<Sale> sales = salesDB.salesByDate("2025-05-10");
+        for (Sale s : sales) {
+            System.out.printf("ID: %d | Chocolate ID: %d | Qty: %d | Total: %.2f | Date: %s%n",
+                    s.getId(), s.getChocolate_Id(), s.getQuantity(), s.getTotal(), s.getSale_Date());
+        }
     }
 
 

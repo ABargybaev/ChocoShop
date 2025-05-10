@@ -98,4 +98,35 @@ public class SalesDB {
             }
         }
 
+        public ArrayList<Sale> salesByDate(String sale_date) {
+            ArrayList<Sale> sales = new ArrayList<>();
+            String sql = "SELECT * FROM sales WHERE sale_date = ?";
+            try (Connection conn = DatabaseConnection.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setDate(1, java.sql.Date.valueOf(sale_date));
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    Sale s = new Sale(
+                            rs.getInt("id"),
+                            rs.getInt("chocolate_id"),
+                            rs.getInt("quantity"),
+                            rs.getDouble("total"),
+                            rs.getString("sale_date")
+                    );
+                    sales.add(s);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return sales;
+        }
+
+
+
+        public void salesOverall(){
+
+        }
+
 }

@@ -148,10 +148,8 @@ public class ChocolateDB {
                 System.out.printf("%-4d | %-20s | %-8.2f | %-8d | %-30s%n", chocoId, chocoName, price, quantity, description);
                 System.out.printf("%-4d | %-20s%n", supplierId, supplierName);
             } else {
-                System.out.println("❗ Шоколад с таким ID не найден.");
+                System.out.println("Chocolate not found.");
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
