@@ -123,7 +123,30 @@ public class SalesDB {
             return sales;
         }
 
+        public ArrayList<Sale> salesByChocolate(int chocolate_id){
+                ArrayList<Sale> sales = new ArrayList<>();
+                String sql = "SELECT * FROM sales WHERE chocolate_id = ?";
+                try (Connection conn = DatabaseConnection.getConnection();
+                     PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+                    stmt.setInt(1, chocolate_id);
+                    ResultSet rs = stmt.executeQuery();
+
+                    while (rs.next()) {
+                        Sale s = new Sale(
+                                rs.getInt("id"),
+                                rs.getInt("chocolate_id"),
+                                rs.getInt("quantity"),
+                                rs.getDouble("total"),
+                                rs.getString("sale_date")
+                        );
+                        sales.add(s);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return sales;
+        }
 
         public void salesOverall(){
 

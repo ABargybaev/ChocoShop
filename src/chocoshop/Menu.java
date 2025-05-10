@@ -86,7 +86,7 @@ public class Menu {
                 salesByDate();
                 break;
             case 2:
-
+                salesbyChocolate();
                 break;
             case 3:
 
@@ -100,6 +100,17 @@ public class Menu {
         System.out.print("\nEnter the date: ");
         String sale_date = scan.nextLine();
         ArrayList<Sale> sales = salesDB.salesByDate("2025-05-10");
+        for (Sale s : sales) {
+            System.out.printf("ID: %d | Chocolate ID: %d | Qty: %d | Total: %.2f | Date: %s%n",
+                    s.getId(), s.getChocolate_Id(), s.getQuantity(), s.getTotal(), s.getSale_Date());
+        }
+    }
+
+    public void salesbyChocolate(){
+        System.out.print("\nEnter the chocolate ID: ");
+        int id = scan.nextInt();
+        scan.nextLine();
+        ArrayList<Sale> sales = salesDB.salesByChocolate(id);
         for (Sale s : sales) {
             System.out.printf("ID: %d | Chocolate ID: %d | Qty: %d | Total: %.2f | Date: %s%n",
                     s.getId(), s.getChocolate_Id(), s.getQuantity(), s.getTotal(), s.getSale_Date());
