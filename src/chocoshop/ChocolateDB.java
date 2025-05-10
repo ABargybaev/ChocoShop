@@ -128,6 +128,35 @@ public class ChocolateDB {
         }
     }
 
+    public void fullInfo(int chocolate_id){
+        String sql = "SELECT c.id, c.name, c.description, c.quantity, c.price, s.id AS supplier_id, s.name AS supplier_name FROM chocolate c JOIN supplier s ON c.supplier_id = s.id WHERE c.id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+             stmt.setInt(1, chocolate_id);
+             ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int chocoId = rs.getInt("id");
+                String chocoName = rs.getString("name");
+                String description = rs.getString("description");
+                int quantity = rs.getInt("quantity");
+                double price = rs.getDouble("price");
+                int supplierId = rs.getInt("supplier_id");
+                String supplierName = rs.getString("supplier_name");
+
+                System.out.printf("%-4d | %-20s | %-8.2f | %-8d | %-30s%n", chocoId, chocoName, price, quantity, description);
+                System.out.printf("%-4d | %-20s%n", supplierId, supplierName);
+            } else {
+                System.out.println("❗ Шоколад с таким ID не найден.");
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
     ////// TESTING PURPOSES ONLY /////
 
 

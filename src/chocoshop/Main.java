@@ -25,6 +25,9 @@ public class Main {
                 case 3:
                     menu.changeSupplierInfo();
                     break;
+                case 4:
+                    menu.fullChocolateInfo();
+                    break;
                 case 6:
                     System.out.println("Come again!\nExiting program...");
                     return;

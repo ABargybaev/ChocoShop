@@ -69,6 +69,14 @@ public class Menu {
 
     }
 
+    public void fullChocolateInfo(){
+        showAllChocolates();
+        System.out.print("\nChoose the ID of the desired chocolate: ");
+        int id = scan.nextInt();
+        scan.nextLine();
+        chocolateDB.fullInfo(id);
+    }
+
 
     ////// TESTING PURPOSES ONLY /////
 
