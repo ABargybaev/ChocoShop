@@ -13,6 +13,7 @@ public class Main {
             if (choice == 1) {
                 menu.Trade();
             }
+            ///testing area///
             else if (choice == 69) {
                 menu.showAllChocolates();
             }
