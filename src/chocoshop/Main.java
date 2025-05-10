@@ -11,7 +11,7 @@ public class Main {
         System.out.println("\nWelcome to Chocolate Shop system!");
 
         while (true) {
-            System.out.print("\nList of actions:\n \n 1) Make a trade\n 2) Add a new type of chocolate\n 3) Show all suppliers\n 4) Add a new supplier\n 5) Exit\n\n Choose your action: ");
+            System.out.print("\nList of actions:\n \n 1) Make a trade\n 2) Replenish supplies of the chocolate\n 3) Change information about a supplier\n 4) Show information about a chocolate\n 5) Trades information\n 6) Exit\n\n Choose your action: ");
             int choice = scan.nextInt();
             scan.nextLine();
             System.out.print("\n");
@@ -19,6 +19,9 @@ public class Main {
                 case 1:
                     menu.Trade();
                     break;
+                case 5:
+                    System.out.println("Come again!\nExiting program...");
+                    return;
                     /////testing area/////
                 case 69:
                     menu.showAllChocolates();
@@ -29,9 +32,6 @@ public class Main {
                 case 100:
                     menu.recoverQuantity();
                     break;
-                case 5:
-                    System.out.println("Come again!\nExiting program...");
-                    return;
                 default:
                     System.out.println("Try again!");
             }
