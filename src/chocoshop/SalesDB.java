@@ -149,6 +149,26 @@ public class SalesDB {
         }
 
         public void salesOverall(){
+                String sql = "SELECT SUM(quantity) AS total_quantity, SUM(total) AS total_revenue FROM sales";
+
+                try (Connection conn = DatabaseConnection.getConnection();
+                     PreparedStatement stmt = conn.prepareStatement(sql);
+                     ResultSet rs = stmt.executeQuery()) {
+
+                    if (rs.next()) {
+                        int totalQuantity = rs.getInt("total_quantity");
+                        double totalRevenue = rs.getDouble("total_revenue");
+
+                        System.out.println("Total sales:");
+                        System.out.printf("Overall chocolates sold: %d%n", totalQuantity);
+                        System.out.printf("Overall money made: %.2f%n", totalRevenue);
+                    } else {
+                        System.out.println("no sales data.");
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
 
         }
 

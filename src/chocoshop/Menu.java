@@ -78,7 +78,7 @@ public class Menu {
         chocolateDB.fullInfo(id);
     }
     public void tradeMenu(){
-        System.out.print("\n 1)Show all sales by date\n 2)Show all sales by chocolate\n 3)Show What information would you like to read?: ");
+        System.out.print("\n 1)Show all sales by date\n 2)Show all sales by chocolate\n 3)Show total sales\n\nWhat information would you like to read?: ");
         int choice = scan.nextInt();
         scan.nextLine();
         switch(choice){
@@ -89,7 +89,7 @@ public class Menu {
                 salesbyChocolate();
                 break;
             case 3:
-
+                salesOverall();
                 break;
             default:
                 System.out.println("\nNo!");
@@ -115,6 +115,10 @@ public class Menu {
             System.out.printf("ID: %d | Chocolate ID: %d | Qty: %d | Total: %.2f | Date: %s%n",
                     s.getId(), s.getChocolate_Id(), s.getQuantity(), s.getTotal(), s.getSale_Date());
         }
+    }
+
+    public void salesOverall(){
+        salesDB.salesOverall();
     }
 
 
