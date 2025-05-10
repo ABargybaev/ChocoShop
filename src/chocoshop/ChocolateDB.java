@@ -113,11 +113,7 @@ public class ChocolateDB {
         return 0;
 }
 
-    ////// TESTING PURPOSES ONLY /////
-
-
-
-    public void recoverQuantity(int id, int quantity) {
+    public void addSupply(int id, int quantity) {
         String sql = "UPDATE chocolate SET quantity = quantity + ? WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -126,10 +122,14 @@ public class ChocolateDB {
             stmt.setInt(2, id);
 
             stmt.executeUpdate();
-            System.out.println("Yes");
+            System.out.println("Supply refilled successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    ////// TESTING PURPOSES ONLY /////
+
+
 
 }

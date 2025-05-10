@@ -19,7 +19,13 @@ public class Main {
                 case 1:
                     menu.Trade();
                     break;
-                case 5:
+                case 2:
+                    menu.addSupply();
+                    break;
+                case 3:
+                    menu.changeSupplierInfo();
+                    break;
+                case 6:
                     System.out.println("Come again!\nExiting program...");
                     return;
                     /////testing area/////
@@ -29,8 +35,8 @@ public class Main {
                 case 68:
                     menu.showOneChocolate();
                     break;
-                case 100:
-                    menu.recoverQuantity();
+                case 70:
+                    menu.showAllSuppliers();
                     break;
                 default:
                     System.out.println("Try again!");

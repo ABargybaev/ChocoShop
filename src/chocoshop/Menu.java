@@ -8,6 +8,7 @@ public class Menu {
     private SalesDB salesDB = new SalesDB();
 
     ArrayList<Chocolate> chocolates = chocolateDB.readAll();
+    ArrayList<Supplier> suppliers = supplierDB.readAll();
     Scanner scan = new Scanner(System.in);
 
     public void Trade(){
@@ -34,10 +35,9 @@ public class Menu {
         System.out.println("\nThank you for your chocolate!\n To continue press any button");
     }
 
-    ////// TESTING PURPOSES ONLY /////
-
-    public void recoverQuantity(){
-        System.out.print("\nWhat chocolate: ");
+    public void addSupply(){
+        showAllChocolates();
+        System.out.print("\nSupply of what chocolate would you like to add?: ");
         int choice = scan.nextInt();
         scan.nextLine();
         for (Chocolate ch : chocolates) {
@@ -45,10 +45,37 @@ public class Menu {
                 System.out.printf("%d) %s | %.2f | %d | %-30s%n", ch.getId(), ch.getName(), ch.getPrice(), ch.getQuantity(), ch.getDescription());
             }
         }
-        System.out.print("\nAmount add: ");
+        System.out.print("\nEnter the amount of chocolate you want to add: ");
         int amount = scan.nextInt();
         scan.nextLine();
-        chocolateDB.recoverQuantity(choice, amount);
+        chocolateDB.addSupply(choice, amount);
+    }
+
+    public void changeSupplierInfo(){
+        showAllSuppliers();
+        System.out.print("\nChoose the ID of the supplier you want to change: ");
+        int id = scan.nextInt();
+        scan.nextLine();
+        System.out.print("Enter the name of the supplier: ");
+        String name = scan.nextLine();
+        System.out.print("Enter the address: ");
+        String address = scan.nextLine();
+        System.out.print("Enter the city: ");
+        String city = scan.nextLine();
+        System.out.print("Enter the phone number: ");
+        String phone = scan.nextLine();
+        Supplier sup = new Supplier(id, name, address, city, phone);
+        supplierDB.update(sup);
+
+    }
+
+
+    ////// TESTING PURPOSES ONLY /////
+
+    public void showAllSuppliers(){
+        for (Supplier su : suppliers){
+            System.out.printf("%-4d | %-20s | %-25s | %-10s | %-30s%n", su.getId(), su.getName(), su.getAddress(), su.getCity(), su.getPhone());
+        }
     }
 
 
