@@ -92,7 +92,6 @@ public class SalesDB {
                 stmt.setDouble(3, total);
                 stmt.executeUpdate();
 
-                System.out.println("Sale confirmed");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -165,11 +164,8 @@ public class SalesDB {
                     } else {
                         System.out.println("no sales data.");
                     }
-
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-
         }
-
 }

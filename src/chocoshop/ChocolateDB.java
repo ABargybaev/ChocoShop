@@ -43,7 +43,6 @@ public class ChocolateDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return chocolates;
     }
 
@@ -87,31 +86,31 @@ public class ChocolateDB {
             stmt.setInt(2, id_choice);
 
             stmt.executeUpdate();
-            System.out.println("Yes");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
 
-    public double getPrice(int id_choice){
+    public double getPrice(int id_choice) {
         String sql = "SELECT price FROM chocolate WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-             stmt.setInt(1, id_choice);
-             ResultSet rs = stmt.executeQuery();
+            stmt.setInt(1, id_choice);
+            ResultSet rs = stmt.executeQuery();
 
-             double price = 0;
+            double price = 0;
             if (rs.next()) {
                 price = rs.getDouble("price");
                 return price;
             }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
-}
+    }
+
 
     public void addSupply(int id, int quantity) {
         String sql = "UPDATE chocolate SET quantity = quantity + ? WHERE id = ?";
@@ -155,8 +154,5 @@ public class ChocolateDB {
         }
 
     }
-    ////// TESTING PURPOSES ONLY /////
-
-
 
 }

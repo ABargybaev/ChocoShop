@@ -17,11 +17,21 @@ public class Sale {
         this.sale_date = sale_date;
     }
 
-    public int getId() { return id; }
-    public int getChocolate_Id() { return chocolate_id; }
-    public int getQuantity() { return quantity; }
-    public double getTotal() { return total; }
-    public String getSale_Date() { return sale_date; }
+    public int getId(){
+        return id;
+    }
+    public int getChocolate_Id(){
+        return chocolate_id;
+    }
+    public int getQuantity(){
+        return quantity;
+    }
+    public double getTotal(){
+        return total;
+    }
+    public String getSale_Date(){
+        return sale_date;
+    }
 
     public String toString() {
         return " " + id + chocolate_id + quantity + total + sale_date;
