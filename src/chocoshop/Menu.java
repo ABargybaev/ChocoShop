@@ -17,16 +17,14 @@ public class Menu {
             System.out.println(ch.getId() + ") " + ch.getName());
         }
         System.out.print("\nChoose the ID Number of the desired chocolate: ");
-        int id_choice = readInt();
-        scan.nextLine();
+        int id_choice = chocolateIdValidator();
         for (Chocolate ch : chocolates) {
             if (ch.getId() == id_choice) {
                 System.out.printf("%d) %s | %.2f | %d | %-30s%n", ch.getId(), ch.getName(), ch.getPrice(), ch.getQuantity(), ch.getDescription());
             }
         }
         System.out.print("\nEnter the amount of chocolate you want to buy: ");
-        int amount = scan.nextInt();
-        scan.nextLine();
+        int amount = negativeIntValidator();
         double total = chocolateDB.getPrice(id_choice) * amount;
         System.out.println("Total price: " + total);
 
@@ -40,16 +38,14 @@ public class Menu {
     public void addSupply() {
         showAllChocolates();
         System.out.print("\nSupply of what chocolate would you like to add?: ");
-        int choice = scan.nextInt();
-        scan.nextLine();
+        int choice = chocolateIdValidator();
         for (Chocolate ch : chocolates) {
             if (ch.getId() == choice) {
                 System.out.printf("%d) %s | %.2f | %d | %-30s%n", ch.getId(), ch.getName(), ch.getPrice(), ch.getQuantity(), ch.getDescription());
             }
         }
         System.out.print("\nEnter the amount of chocolate you want to add: ");
-        int amount = scan.nextInt();
-        scan.nextLine();
+        int amount = negativeIntValidator();
         chocolateDB.addSupply(choice, amount);
         menuStopper();
     }
@@ -57,8 +53,7 @@ public class Menu {
     public void changeSupplierInfo() {
         showAllSuppliers();
         System.out.print("\nChoose the ID of the supplier you want to change: ");
-        int id = scan.nextInt();
-        scan.nextLine();
+        int id = supplierIdValidator();
         System.out.print("Enter the name of the supplier: ");
         String name = scan.nextLine();
         System.out.print("Enter the address: ");
@@ -75,8 +70,7 @@ public class Menu {
     public void fullChocolateInfo() {
         showAllChocolates();
         System.out.print("\nChoose the ID of the desired chocolate: ");
-        int id = scan.nextInt();
-        scan.nextLine();
+        int id = chocolateIdValidator();
         chocolateDB.fullInfo(id);
         menuStopper();
     }
@@ -113,8 +107,7 @@ public class Menu {
 
     public void salesbyChocolate() {
         System.out.print("\nEnter the chocolate ID: ");
-        int id = scan.nextInt();
-        scan.nextLine();
+        int id = chocolateIdValidator();
         ArrayList<Sale> sales = salesDB.salesByChocolate(id);
         for (Sale s : sales) {
             System.out.printf("ID: %d | Chocolate ID: %d | Qty: %d | Total: %.2f | Date: %s%n",
@@ -146,7 +139,33 @@ public class Menu {
 
 
 
-    public int readInt(){
+    public int chocolateIdValidator(){
+        while (true) {
+            int value = scan.nextInt();
+            scan.nextLine();
+            if(value > 0 && value < 11){
+                return value;
+            }
+            else{
+                System.out.println("Error! Try again:");
+            }
+        }
+    }
+
+    public int supplierIdValidator(){
+        while (true) {
+            int value = scan.nextInt();
+            scan.nextLine();
+            if(value > 0 && value < 3){
+                return value;
+            }
+            else{
+                System.out.println("Error! Try again:");
+            }
+        }
+    }
+
+    public int negativeIntValidator(){
         while (true) {
             int value = scan.nextInt();
             scan.nextLine();
@@ -161,7 +180,7 @@ public class Menu {
 
     public void menuStopper(){
         System.out.println("To continue press any key:");
-        String stopper = scan.nextLine();
+        scan.nextLine();
     }
 
 }
